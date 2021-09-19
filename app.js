@@ -1,9 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-dotenv.config();
+// const mongoose = require("mongoose");
+// const dotenv = require("dotenv");
+// dotenv.config();
 
 const contactsRouter = require("./routes/api/contacts");
 
@@ -23,19 +23,19 @@ app.use((err, req, res, next) => {
   res.status(status).json({ status: "error", code: status, message });
 });
 
-const { DB_HOST, PORT = 3000 } = process.env;
+// const { DB_HOST, PORT = 3000 } = process.env;
 
-mongoose
-  .connect(DB_HOST, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    app.listen(PORT);
-  })
-  .catch((error) => {
-    console.log(error.message);
-    process.exit(1);
-  });
+// mongoose
+//   .connect(DB_HOST, {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   })
+//   .then(() => {
+//     app.listen(PORT);
+//   })
+//   .catch((error) => {
+//     console.log(error.message);
+//     process.exit(1);
+//   });
 
-// module.exports = app;
+module.exports = app;
