@@ -5,7 +5,7 @@ const getAll = require("./getAll");
 const getById = require("./getById");
 const updateStatus = require("./updateStatus");
 
-module.export = {
+module.exports = {
   add,
   removeById,
   updateById,
