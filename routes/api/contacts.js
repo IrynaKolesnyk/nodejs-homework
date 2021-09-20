@@ -6,15 +6,15 @@ const { contacts: ctrl } = require("../../controllers");
 
 router.get("/", ctrl.getAll);
 
-router.get("/:id", ctrl.getById);
+router.get("/:contactId", ctrl.getById);
 
 router.post("/", validation(joiSchema), ctrl.add);
 
-router.put("/:id", validation(joiSchema), ctrl.updateById);
+router.put("/:contactId", validation(joiSchema), ctrl.updateById);
 
-router.patch("/:id", ctrl.updateStatus);
+router.patch("/:contactId", ctrl.updateStatus);
 
-router.delete("/:id", ctrl.removeById);
+router.delete("/:contactId", ctrl.removeById);
 
 module.exports = router;
 

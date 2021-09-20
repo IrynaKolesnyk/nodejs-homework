@@ -3,10 +3,7 @@ const { NotFound } = require("http-errors");
 const getById = async (req, res, next) => {
   try {
     const { contactId } = req.params;
-    const contact = await await Contact.findById(
-      contactId,
-      "_id name description price isActive status code"
-    );
+    const contact = await await Contact.findById(contactId);
     if (!contact) {
       throw new NotFound(`Product with id=${contactId} not found`);
     }
