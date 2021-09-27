@@ -5,7 +5,8 @@ const removeById = async (req, res, next) => {
   const { contactId } = req.params;
 
   try {
-    const contact = await Contact.findByIdAndDelete(contactId);
+    const findOne = { _id: contactId, owner: req.user._id };
+    const contact = await Contact.findByIdAndDelete(findOne);
 
     if (!contact) {
       throw new NotFound(`Contact with id=${contactId} not found`);
