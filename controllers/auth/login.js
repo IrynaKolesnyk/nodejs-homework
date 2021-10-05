@@ -36,17 +36,3 @@ const login = async (req, res) => {
 };
 
 module.exports = login;
-
-// bcrypt.compareSync(password, this.password); if(!user.bcrypt.compareSync(password, this.password))
-// if (!user) {
-//   res
-//     .status(401)
-//     .json({ status: "error", code: 401, message: "Email is wron" });
-//   return;
-// }
-// if (!user.comparePassword(password)) {
-//   res
-//     .status(401)
-//     .json({ status: "error", code: 401, message: "Password is wrong" });
-//   return;
-// }

@@ -1,5 +1,15 @@
 const express = require("express");
-const { user: ctrl } = require("../../controllers");
 const router = express.Router();
-router.get("/", ctrl.getAll);
-router.delete("/:id", ctrl.removeById);
+const { users: ctrl } = require("../../controllers");
+const { authenticate, upload } = require("../../middlewares");
+
+router.get("/current", authenticate, ctrl.currentUser);
+
+router.patch(
+  "/avatars",
+  authenticate,
+  upload.single("avatar"),
+  ctrl.uploadAvatar
+);
+
+module.exports = router;
