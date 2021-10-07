@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 const { User } = require("../../models");
-const { sendResponse } = require("../../helpers");
+const { sendResponse, sendEmail } = require("../../helpers");
 const register = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -14,15 +14,24 @@ const register = async (req, res) => {
       });
       return;
     }
-    const newUser = {
-      email,
-      password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)),
+
+    const newUser = new User({ email });
+    newUser.setPassword(password);
+    newUser.setVerifyToken();
+    const { verifyToken } = await newUser.save();
+    const data = {
+      to: email,
+      subject: "Подтверджение email при регистрации на сайте localhost:3000",
+      html: `<a 
+                href="http://localhost:3000/api/auth/verify/${verifyToken}"
+                target="_blank">Подтвердить регистрацию</a>`,
     };
-    await User.create(newUser);
+    await sendEmail(data);
+
     sendResponse({
       res,
       status: 201,
-      data: { message: "Success register" },
+      data: { message: "Success register", verifyToken },
     });
   } catch (error) {
     console.log(error.message);
@@ -30,3 +39,9 @@ const register = async (req, res) => {
 };
 
 module.exports = register;
+
+// const newUser = {
+//   email,
+//   password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)),
+// };
+// await User.create(newUser);
