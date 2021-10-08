@@ -25,3 +25,18 @@ app.use((err, req, res, next) => {
 });
 
 module.exports = app;
+
+// const sgMail = require("@sendgrid/mail");
+// const { SENDGRID_API_KEY } = process.env;
+// sgMail.setApiKey(SENDGRID_API_KEY);
+// const email = {
+//   to: "iriska.kolesnik@gmail.com",
+//   from: "iriska.kolesnik@gmail.com",
+//   subject: "Test",
+//   html: `<p>Test</p>`,
+// };
+
+// sgMail
+//   .send()
+//   .then(() => console.log("success"))
+//   .catch((error) => console.log(error.message));
